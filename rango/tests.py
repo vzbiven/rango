@@ -93,7 +93,7 @@ class Chapter4ViewTests(TestCase):
         self.assertIn(b'This tutorial has been put together by',response.content)
 
 
-'''
+
 class ModelTests(TestCase):
 
     def setUp(self):
@@ -183,7 +183,7 @@ class Chapter5ViewTests(TestCase):
 
 
 
-
+'''
 class Chapter6ViewTests(TestCase):
 
     def setUp(self):
