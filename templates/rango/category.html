@@ -3,8 +3,9 @@
   <head>
     <title>Rango</title>
   </head>
-  <a href="/rango/">Main Page</a> <br />
+
   <body>
+  <a href="/rango">Home Page</a> <br />
     <div>
     {% if category %}
       <h1>{{ category.name }}</h1>
@@ -20,6 +21,9 @@
     {% else %}
       The specified category does not exist!
     {% endif %}
+    </div>
+    <div>
+        <a href="/rango/category/{{category.slug}}/add_page/">New Page</a> <br />
     </div>
   </body>
 </html>
