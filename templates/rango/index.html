@@ -2,8 +2,10 @@
 {% load staticfiles %}
 
 {% block body_block %}
-  <h1>Rango says...</h1>
-  <div>
+  <div class="jumbotron p-4">
+  <div class="container">
+    <h1 class="jumbotron-heading">Rango says...</h1>
+    <div>
     {% if user.is_authenticated %}
       howdy {{ user.username }}
     {% else %}
@@ -12,34 +14,51 @@
     <br />
     <p>It's your's {{ visits }} visit!</p>
     <strong>{{ boldmessage }}</strong><br />
+    </div>
+  </div>
   </div>
 
-  <div>
-  <h2>Most Liked Categories</h2>
-  {% if categories %}
-    <ul>
-    {% for category in categories %}
-      <li>
-        <a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a>
-      </li>
-    {% endfor %}
-    <ul>
-  {% else %}
-    <strong>There are no categories present.</strong>
-  {% endif %}
-  </div>
-
-  <div>
-  <h2>Most Viewed Pages</h2>
-  {% if pages %}
-    <ul>
-      {% for page in pages %}
-        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+  <div class="container">
+  <div class="row">
+  <div class="col-md-6">
+  <div class="card mb-6">
+  <div class="card-body">
+    <h2>Most Liked Categories</h2>
+    <p class="card-text">
+    {% if categories %}
+      <ul class="list-group">
+      {% for category in categories %}
+        <li class="list-group-item">
+          <a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a>
+        </li>
       {% endfor %}
-    </ul>
-  {% else %}
-    <strong>No pages currently in category.</strong>
-  {% endif %}
+      <ul>
+    {% else %}
+      <strong>There are no categories present.</strong>
+    {% endif %}
+    </p>
+  </div>
+  </div>
+  </div>
+
+  <div class="col-md-6">
+  <div class="card mb-6">
+  <div class="card-body">
+    <h2>Most Viewed Pages</h2>
+    <p class="card-text">
+    {% if pages %}
+      <ul class="list-group">
+        {% for page in pages %}
+          <li class="list-group-item"><a href="{{ page.url }}">{{ page.title }}</a></li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <strong>No pages currently in category.</strong>
+    {% endif %}
+  </div>
+  </div>
+  </div>
+  </div>
   </div>
 
   <div>

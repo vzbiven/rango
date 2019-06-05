@@ -6,25 +6,36 @@
 {% endblock title_block %}
 
 {% block body_block %}
-    <h1>Add new Page</h1>
-    <div>
-    {% if category %}
-        <form id="page_form" method="post" action="/rango/category/{{category.slug}}/add_page/">
+    <div class="jumbotron p-4">
+        <div class="container">
+        <h1 class="jumbotron-heading">Add Page to {{ category.name }}</h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+        {% if category %}
+        <form role="form" id="page_form" method="post"
+                action="/rango/category/{{category.slug}}/add_page/">
             {% csrf_token %}
             {% for hidden in form.hidden_fields %}
                 {{ hidden }}
             {% endfor %}
             {% for field in form.visible_fields %}
                 {{ field.errors }}
-                {{ field.help_text }}
-                {{ field }}
+                {{ field.help_text }}<br/>
+                {{ field }}<br/>
             {% endfor %}
-        <input type="submit" name="submit" value="Create Page" />
-    {% else %}
-        Category does not exist
-    {% endif %}
-            
+            <br/>
+            <button class="btn btn-primary"
+                    type="submit" name="submit">
+                            Add Page
+            </button>
+        {% else %}
+            Category does not exist
+        {% endif %}
+        <div class="p-5"></div>
         </form>
+        </div>
     </div>
 {% endblock body_block %}
 

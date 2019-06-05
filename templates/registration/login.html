@@ -1,12 +1,6 @@
-{% extends 'rango/base.html' %}
-{% load staticfiles %}
-
-{% block title_block %}
-    Login
-{% endblock %}
-
+{% extends "rango/base.html" %}
 {% block body_block %}
-<link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css"
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css"
 rel="stylesheet">
 <div class="jumbotron p-4">
 <div class="container">
@@ -22,10 +16,14 @@ rel="stylesheet">
             placeholder="Username" required autofocus>
     
     <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" name="password" 
+    <input type="password" name="password" id="id_password" class="form-control"
             placeholder="Password" required>
     <button class="btn btn-lg btn-primary btn-block" type="submit"
             value="Submit">Sign in</button>
 </form>
 </div>
+    <p>
+        Not a member?
+        <a href="{% url 'registration_register' %}">Register</a>
+    </p>
 {% endblock %}

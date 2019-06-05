@@ -2,6 +2,8 @@ from datetime import datetime
 
 from django.shortcuts import render
 
+from rango.bing_search import run_query, read_bing_key
+
 from rango.models import Category
 from rango.models import Page
 
@@ -152,6 +154,17 @@ def user_logout(request):
 def restricted(request):
     return render(request, 'rango/restricted.html', {})
 
+def search(request):
+    result_list=[]
+    if request.method == 'POST':
+        query = request.POST['query'].strip()
+        if query:
+            result_list = run_query(query)
+        else: 
+            query = ''
+    return render(request, 'rango/search.html', {'result_list': result_list, 'query': query})
+
+### HELPERS
 def get_server_side_cookie(request, cookie, default_val=None):
     val = request.session.get(cookie)
     if not val:
